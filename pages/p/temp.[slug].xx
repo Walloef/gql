@@ -1,0 +1,10 @@
+import React from "react";
+import { useRouter } from "next/dist/client/router";
+
+const Pokemon = () => {
+  const { query } = useRouter();
+  console.log(query.name);
+  return <div></div>;
+};
+
+export default Pokemon;
