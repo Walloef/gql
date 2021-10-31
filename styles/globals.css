@@ -11,8 +11,6 @@ body {
 a {
   color: inherit;
   text-decoration: none;
-  padding: 0 12px;
-  margin: 12px;
   font-weight: bold;
   font-size: 17px;
   text-transform: capitalize;
@@ -24,4 +22,14 @@ a:hover {
 
 * {
   box-sizing: border-box;
+}
+
+/* ///////////////////// */
+
+h1 {
+  text-align: center;
+}
+main {
+  width: 648px;
+  max-width: calc(100% - 12px);
 }

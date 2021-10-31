@@ -1,10 +1,11 @@
 import { gql } from "graphql-request";
 
 export const POKEMONS = gql`
-  query getPokemons($limit: Int = 10) {
-    pokemons(limit: $limit, offset: 0) {
+  query getPokemons($limit: Int = 10, $offset: Int = 0) {
+    pokemons(limit: $limit, offset: $offset) {
       results {
         name
+        image
       }
     }
   }

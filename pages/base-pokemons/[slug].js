@@ -10,6 +10,8 @@ const PokemonView = ({ pokemon }) => {
     id,
     weight,
     height,
+    stats,
+    types,
   } = pokemon;
 
   const [imgUrl, setImageUrl] = useState(front_default);
@@ -34,6 +36,7 @@ const PokemonView = ({ pokemon }) => {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={imgUrl} alt={`a picture of ${name}`} width={96} height={96} />
       </div>
+
       <div
         style={{
           position: "relative",
@@ -50,14 +53,27 @@ const PokemonView = ({ pokemon }) => {
         <span
           style={{
             position: "absolute",
-            top: -10,
-            right: -33,
+            top: -18,
+            right: -21,
             fontSize: 23,
             fontWeight: "bold",
           }}
         >
           #{id}
         </span>
+      </div>
+      <div>
+        <h3>{types.length > 1 ? "Types" : "Type"}</h3>
+        {types.map((type, index) => (
+          <p key={index}>{type.type.name}</p>
+        ))}
+      </div>
+      <div>
+        {stats.map((stat, index) => (
+          <p key={index}>
+            {stat.stat.name}: {stat.base_stat}
+          </p>
+        ))}
       </div>
       <div>
         <p>Height: {height / 10} m</p>
@@ -76,7 +92,7 @@ export const getStaticProps = async ({ params }) => {
 };
 
 export const getStaticPaths = async () => {
-  const { pokemons } = await query(POKEMONS, { limit: 9 });
+  const { pokemons } = await query(POKEMONS, { limit: 151 });
   const paths = pokemons.results.map((pokemon) => {
     return { params: { slug: pokemon.name } };
   });
