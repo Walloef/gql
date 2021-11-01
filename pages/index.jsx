@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
-import Link from "next/link";
-import { query } from "../client";
-import { POKEMONS } from "../queries";
-import styles from "../styles/Home.module.css";
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { query } from '../client';
+import { POKEMONS } from '../queries';
+import styles from '../styles/Home.module.css';
 
 export default function Home({ results }) {
   const [pokemons, setPokemons] = useState(results);
@@ -22,6 +22,7 @@ export default function Home({ results }) {
       })();
     }
   }, [currentLimit]);
+
   return (
     <div className={styles.container}>
       <main>

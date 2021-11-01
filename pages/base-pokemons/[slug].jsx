@@ -1,11 +1,11 @@
-import { useState } from "react";
-import { query } from "../../client";
-import { POKEMON, POKEMONS } from "../../queries";
+import { query } from '../../client';
+import PokemonImage from '../../components/PokemonImage';
+import { POKEMON, POKEMONS } from '../../queries';
 
 const PokemonView = ({ pokemon }) => {
-  console.log(pokemon);
+  // console.log('pokemon');
   const {
-    sprites: { front_default, back_default },
+    sprites,
     name,
     id,
     weight,
@@ -14,37 +14,25 @@ const PokemonView = ({ pokemon }) => {
     types,
   } = pokemon;
 
-  const [imgUrl, setImageUrl] = useState(front_default);
-
-  const mouseHover = (enter) => {
-    setImageUrl(enter ? back_default : front_default);
-  };
-
   return (
     <div
       style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        marginTop: "10vh",
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        marginTop: '10vh',
       }}
     >
-      <div
-        onMouseEnter={() => mouseHover(true)}
-        onMouseLeave={() => mouseHover(false)}
-      >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={imgUrl} alt={`a picture of ${name}`} width={96} height={96} />
-      </div>
+      <PokemonImage sprites={sprites} alt={`a picture of ${name}`}/>
 
       <div
         style={{
-          position: "relative",
+          position: 'relative',
         }}
       >
         <h1
           style={{
-            textTransform: "uppercase",
+            textTransform: 'uppercase',
             marginTop: 0,
           }}
         >
@@ -52,18 +40,18 @@ const PokemonView = ({ pokemon }) => {
         </h1>
         <span
           style={{
-            position: "absolute",
+            position: 'absolute',
             top: -18,
             right: -21,
             fontSize: 23,
-            fontWeight: "bold",
+            fontWeight: 'bold',
           }}
         >
           #{id}
         </span>
       </div>
       <div>
-        <h3>{types.length > 1 ? "Types" : "Type"}</h3>
+        <h3>{types.length > 1 ? 'Types' : 'Type'}</h3>
         {types.map((type, index) => (
           <p key={index}>{type.type.name}</p>
         ))}
@@ -84,10 +72,7 @@ const PokemonView = ({ pokemon }) => {
 };
 
 export const getStaticProps = async ({ params }) => {
-  console.log(params.slug);
-
   const { pokemon } = await query(POKEMON, { name: params.slug });
-  console.log(pokemon);
   return { props: { pokemon } };
 };
 
