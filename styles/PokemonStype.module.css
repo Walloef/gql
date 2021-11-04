@@ -1,6 +1,9 @@
 .wrapper {
-  max-width: 600px;
-  margin: 0 auto;
+  display: grid;
+  justify-content: space-around;
+  align-content: center;
+  min-height: 100vh;
+  min-width: 100vw;
 }
 
 .image {

@@ -20,8 +20,6 @@ const PokemonView = ({ pokemon }) => {
       <div className={pokemonStype.container}>
         <div
           className={pokemonStype.image}
-          onMouseEnter={() => mouseHover(true)}
-          onMouseLeave={() => mouseHover(false)}
         >
           {/*eslint-disable-next-line @next/next/no-img-element */}
           <PokemonImage sprites={sprites} alt={`a picture of ${name}`}/>
