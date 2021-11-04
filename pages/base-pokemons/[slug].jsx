@@ -1,12 +1,12 @@
-import { useState, Fragment } from "react";
+import { Fragment } from "react";
 import { query } from "../../client";
 import { POKEMON, POKEMONS } from "../../queries";
 import pokemonStype from "../../styles/PokemonStype.module.css";
-
+import PokemonImage from '../../components/PokemonImage'
 const PokemonView = ({ pokemon }) => {
-  console.log(pokemon);
+  // console.log('pokemon');
   const {
-    sprites: { front_default, back_default },
+    sprites,
     name,
     id,
     weight,
@@ -14,12 +14,6 @@ const PokemonView = ({ pokemon }) => {
     stats,
     types,
   } = pokemon;
-
-  const [imgUrl, setImageUrl] = useState(front_default);
-
-  const mouseHover = (enter) => {
-    setImageUrl(enter ? back_default : front_default);
-  };
 
   return (
     <div className={pokemonStype.wrapper}>
@@ -30,12 +24,7 @@ const PokemonView = ({ pokemon }) => {
           onMouseLeave={() => mouseHover(false)}
         >
           {/*eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={imgUrl}
-            alt={`a picture of ${name}`}
-            width={96}
-            height={96}
-          />
+          <PokemonImage sprites={sprites} alt={`a picture of ${name}`}/>
         </div>
         <div className={pokemonStype.name}>
           <h1>{name} </h1> <span>#{id}</span>
