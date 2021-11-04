@@ -1,0 +1,57 @@
+.wrapper {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.image {
+  grid-area: image;
+}
+
+.name {
+  position: relative;
+  grid-area: name;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.name span {
+  position: absolute;
+  top: -18px;
+  right: -21px;
+  font-size: 23px;
+  font-weight: bold;
+}
+
+.size {
+  grid-area: size;
+  display: flex;
+  flex-wrap: wrap;
+  justify-self: normal;
+  justify-content: space-evenly;
+}
+
+.skills {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+}
+
+.type {
+  grid-area: type;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto;
+  grid-gap: var(--default-spacing);
+  margin-bottom: var(--default-spacing);
+  justify-items: center;
+  grid-template-areas:
+    "image image image image"
+    "name name name name"
+    ". size size ."
+    "type type type type";
+}

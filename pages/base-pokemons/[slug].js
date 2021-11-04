@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, Fragment } from "react";
 import { query } from "../../client";
 import { POKEMON, POKEMONS } from "../../queries";
+import pokemonStype from "../../styles/PokemonStype.module.css";
 
 const PokemonView = ({ pokemon }) => {
   console.log(pokemon);
@@ -21,73 +22,56 @@ const PokemonView = ({ pokemon }) => {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        marginTop: "10vh",
-      }}
-    >
-      <div
-        onMouseEnter={() => mouseHover(true)}
-        onMouseLeave={() => mouseHover(false)}
-      >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={imgUrl} alt={`a picture of ${name}`} width={96} height={96} />
-      </div>
+    <div className={pokemonStype.wrapper}>
+      <div className={pokemonStype.container}>
+        <div
+          className={pokemonStype.image}
+          onMouseEnter={() => mouseHover(true)}
+          onMouseLeave={() => mouseHover(false)}
+        >
+          {/*eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={imgUrl}
+            alt={`a picture of ${name}`}
+            width={96}
+            height={96}
+          />
+        </div>
+        <div className={pokemonStype.name}>
+          <h1>{name} </h1> <span>#{id}</span>
+        </div>
 
-      <div
-        style={{
-          position: "relative",
-        }}
-      >
-        <h1
-          style={{
-            textTransform: "uppercase",
-            marginTop: 0,
-          }}
-        >
-          {name}
-        </h1>
-        <span
-          style={{
-            position: "absolute",
-            top: -18,
-            right: -21,
-            fontSize: 23,
-            fontWeight: "bold",
-          }}
-        >
-          #{id}
-        </span>
-      </div>
-      <div>
-        <h3>{types.length > 1 ? "Types" : "Type"}</h3>
-        {types.map((type, index) => (
-          <p key={index}>{type.type.name}</p>
-        ))}
-      </div>
-      <div>
-        {stats.map((stat, index) => (
-          <p key={index}>
-            {stat.stat.name}: {stat.base_stat}
+        <div className={pokemonStype.size}>
+          <h2>Size</h2>
+          <p>Height: {height / 10} m</p>
+          <p>Weight: {weight / 10} kg</p>
+        </div>
+
+        <div className={pokemonStype.type}>
+          <h2>{types.length > 1 ? "Types" : "Type"}</h2>
+          <p>
+            {types.map((type, index) => (
+              <Fragment key={index}>
+                {type.type.name}
+                {types.length !== index + 1 && ", "}
+              </Fragment>
+            ))}
           </p>
+        </div>
+      </div>
+      <ul className={pokemonStype.skills}>
+        {stats.map((stat, index) => (
+          <li key={index}>
+            {stat.stat.name}: {stat.base_stat}
+          </li>
         ))}
-      </div>
-      <div>
-        <p>Height: {height / 10} m</p>
-        <p>Weight: {weight / 10} kg</p>
-      </div>
+      </ul>
     </div>
   );
 };
 
 export const getStaticProps = async ({ params }) => {
-  console.log(params.slug);
-
   const { pokemon } = await query(POKEMON, { name: params.slug });
-  console.log(pokemon);
   return { props: { pokemon } };
 };
 
