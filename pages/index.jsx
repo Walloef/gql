@@ -58,6 +58,7 @@ export const getStaticProps = async () => {
   const {
     pokemons: { results },
   } = await query(POKEMONS, { limit: 9 });
+
   return {
     props: { results },
   };

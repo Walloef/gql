@@ -1,5 +1,10 @@
 :root {
-  --default-spacing: 12px;
+  --default-spacing: 1.2rem;
+  --text-color: #e7ddca;
+  --bg: #16212a;
+  --h1: 3.6rem;
+  --h2: 2.6rem;
+  --default-font-size: 1.6rem;
 }
 
 *,
@@ -10,32 +15,39 @@
   padding: 0;
 }
 
+html {
+  font-size: 62.5%;
+}
+
 html,
 body {
-  padding: 0;
-  margin: 0;
-  background: #16212a;
-  color: #e7ddca;
+  background: var(--bg);
+  color: var(--text-color);
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
 h1 {
   text-align: center;
+  font-size: var(--h1);
 }
 
 h2 {
-  display: block;
   width: 100%;
   text-align: center;
+  font-size: var(--h2);
 }
 
 a {
   color: inherit;
   text-decoration: none;
   font-weight: bold;
-  font-size: 17px;
+  font-size: var(--default-font-size);
   text-transform: capitalize;
+}
+
+p {
+  font-size: var(--default-font-size);
 }
 
 a:hover {

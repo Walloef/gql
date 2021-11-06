@@ -37,6 +37,6 @@
   background: #d45d5d;
   color: black;
   font-weight: bold;
-  font-size: 15px;
+  font-size: var(--default-font-size);
   cursor: pointer;
 }

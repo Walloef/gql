@@ -4,7 +4,7 @@ import { POKEMON, POKEMONS } from "../../queries";
 import pokemonStype from "../../styles/PokemonStype.module.css";
 import PokemonImage from '../../components/PokemonImage'
 const PokemonView = ({ pokemon }) => {
-  // console.log('pokemon');
+
   const {
     sprites,
     name,
@@ -49,7 +49,7 @@ const PokemonView = ({ pokemon }) => {
       <ul className={pokemonStype.skills}>
         {stats.map((stat, index) => (
           <li key={index}>
-            {stat.stat.name}: {stat.base_stat}
+            <p>{stat.stat.name}: {stat.base_stat}</p>
           </li>
         ))}
       </ul>
