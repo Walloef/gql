@@ -1,6 +1,6 @@
-import React from "react";
-import { query } from "../../client";
-import { POKEMONS } from "../../queries";
+import React from 'react';
+import { query } from '../../client';
+import { POKEMONS } from '../../queries';
 
 const Pokemon = ({ p }) => {
   return (

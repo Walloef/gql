@@ -1,5 +1,5 @@
 :root {
-  --default-spacing: 1.2rem;
+  --default-spacing: 2rem;
   --text-color: #e7ddca;
   --bg: #16212a;
   --h1: 3.6rem;
@@ -36,6 +36,7 @@ h2 {
   width: 100%;
   text-align: center;
   font-size: var(--h2);
+  margin-bottom: calc(var(--default-spacing) * 0.4);
 }
 
 a {
@@ -48,11 +49,20 @@ a {
 
 p {
   font-size: var(--default-font-size);
+  text-transform: capitalize;
 }
 
 a:hover {
   text-decoration: underline;
 }
+
+ul {
+  list-style: none;
+}
+
+/* li {
+  
+} */
 
 img {
   display: block;

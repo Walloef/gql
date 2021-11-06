@@ -1,7 +1,7 @@
-import { Fragment } from "react";
-import { query } from "../../client";
-import { POKEMON, POKEMONS } from "../../queries";
-import pokemonStype from "../../styles/PokemonStype.module.css";
+import { Fragment } from 'react';
+import { query } from '../../client';
+import { POKEMON, POKEMONS } from '../../queries';
+import pokemonStype from '../../styles/PokemonStype.module.scss';
 import PokemonImage from '../../components/PokemonImage'
 const PokemonView = ({ pokemon }) => {
 
@@ -30,22 +30,23 @@ const PokemonView = ({ pokemon }) => {
 
         <div className={pokemonStype.size}>
           <h2>Size</h2>
-          <p>Height: {height / 10} m</p>
-          <p>Weight: {weight / 10} kg</p>
+          <p>Height: {height / 10}m</p>
+          <p>Weight: {weight / 10}kg</p>
         </div>
 
         <div className={pokemonStype.type}>
-          <h2>{types.length > 1 ? "Types" : "Type"}</h2>
+          <h2>{types.length > 1 ? 'Types' : 'Type'}</h2>
           <p>
             {types.map((type, index) => (
               <Fragment key={index}>
                 {type.type.name}
-                {types.length !== index + 1 && ", "}
+                {types.length !== index + 1 && ', '}
               </Fragment>
             ))}
           </p>
         </div>
       </div>
+      <h2>Base stats</h2>
       <ul className={pokemonStype.skills}>
         {stats.map((stat, index) => (
           <li key={index}>

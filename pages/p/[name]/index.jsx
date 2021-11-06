@@ -1,5 +1,5 @@
-import React from "react";
-import { useRouter } from "next/dist/client/router";
+import React from 'react';
+import { useRouter } from 'next/dist/client/router';
 
 const Pokemon = () => {
   const { query } = useRouter();

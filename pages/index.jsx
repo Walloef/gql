@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { query } from '../client';
 import { POKEMONS } from '../queries';
-import styles from '../styles/Home.module.css';
+import styles from '../styles/Home.module.scss';
 
 export default function Home({ results }) {
   const [pokemons, setPokemons] = useState(results);
@@ -33,7 +33,7 @@ export default function Home({ results }) {
             index > 150 ? null : (
               <Link
                 key={index}
-                href="/base-pokemons/[slug]"
+                href='/base-pokemons/[slug]'
                 as={`/base-pokemons/${pokemon.name}`}
               >
                 <a className={styles.link}>
