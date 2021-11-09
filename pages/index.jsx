@@ -26,24 +26,27 @@ export default function Home({ results }) {
   return (
     <div className={styles.container}>
       <main>
-        <h1>Select your favorite</h1>
+        <h1 className={styles.heading}>Select your favorite</h1>
 
-        <div className={styles.pokemonNav}>
-          {pokemons.map((pokemon, index) =>
-            index > 150 ? null : (
-              <Link
-                key={index}
-                href='/base-pokemons/[slug]'
-                as={`/base-pokemons/${pokemon.name}`}
-              >
-                <a className={styles.link}>
-                  <img src={pokemon.image} alt={`image of ${pokemon.name}`} />
-                  {pokemon.name}
-                </a>
-              </Link>
-            )
-          )}
-        </div>
+        {pokemons && (
+          <ul className={styles.pokemonNav}>
+            {pokemons.map((pokemon, index) =>
+              index > 150 ? null : (
+                <li key={index}>
+                  <Link href="/[slug]" as={`/${pokemon.name}`}>
+                    <a className={styles.link}>
+                      <img
+                        src={pokemon.image}
+                        alt={`image of ${pokemon.name}`}
+                      />
+                      {pokemon.name}
+                    </a>
+                  </Link>
+                </li>
+              )
+            )}
+          </ul>
+        )}
         {pokemons.length <= 151 && (
           <button className={styles.button} onClick={onClick}>
             Show more Pokemons

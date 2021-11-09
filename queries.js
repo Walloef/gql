@@ -3,6 +3,7 @@ import { gql } from 'graphql-request';
 export const POKEMONS = gql`
   query getPokemons($limit: Int = 10, $offset: Int = 0) {
     pokemons(limit: $limit, offset: $offset) {
+      count
       results {
         name
         image

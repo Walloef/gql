@@ -1,28 +1,16 @@
 import { Fragment } from 'react';
-import { query } from '../../client';
-import { POKEMON, POKEMONS } from '../../queries';
-import pokemonStype from '../../styles/PokemonStype.module.scss';
-import PokemonImage from '../../components/PokemonImage'
+import { query } from '../client';
+import { POKEMON, POKEMONS } from '../queries';
+import pokemonStype from '../styles/PokemonStype.module.scss';
+import PokemonImage from '../components/PokemonImage';
 const PokemonView = ({ pokemon }) => {
-
-  const {
-    sprites,
-    name,
-    id,
-    weight,
-    height,
-    stats,
-    types,
-  } = pokemon;
+  const { sprites, name, id, weight, height, stats, types } = pokemon;
 
   return (
     <div className={pokemonStype.wrapper}>
       <div className={pokemonStype.container}>
-        <div
-          className={pokemonStype.image}
-        >
-          {/*eslint-disable-next-line @next/next/no-img-element */}
-          <PokemonImage sprites={sprites} alt={`a picture of ${name}`}/>
+        <div className={pokemonStype.image}>
+          <PokemonImage sprites={sprites} alt={`a picture of ${name}`} />
         </div>
         <div className={pokemonStype.name}>
           <h1>{name} </h1> <span>#{id}</span>
@@ -50,7 +38,9 @@ const PokemonView = ({ pokemon }) => {
       <ul className={pokemonStype.skills}>
         {stats.map((stat, index) => (
           <li key={index}>
-            <p>{stat.stat.name}: {stat.base_stat}</p>
+            <p>
+              {stat.stat.name}: {stat.base_stat}
+            </p>
           </li>
         ))}
       </ul>
@@ -64,12 +54,28 @@ export const getStaticProps = async ({ params }) => {
 };
 
 export const getStaticPaths = async () => {
-  const { pokemons } = await query(POKEMONS, { limit: 151 });
-  const paths = pokemons.results.map((pokemon) => {
+  const allPokemons = [];
+  const {
+    pokemons: { count },
+  } = await query(POKEMONS, { limit: 1 });
+  const promises = [...new Array(Math.ceil(count / 151))].map((_, i) => {
+    return query(POKEMONS, {
+      limit: 151,
+      offset: i * 151,
+    });
+  });
+
+  const allPromises = await Promise.all(promises);
+
+  allPromises.forEach((prom) =>
+    prom.pokemons.results.forEach((res) => allPokemons.push(res))
+  );
+
+  const paths = allPokemons.map((pokemon) => {
     return { params: { slug: pokemon.name } };
   });
   return {
-    paths: paths,
+    paths,
     fallback: false,
   };
 };

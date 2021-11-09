@@ -7,21 +7,26 @@
   align-items: center;
 }
 
+.heading {
+  margin-bottom: var(--default-spacing);
+}
+
 .pokemonNav {
   display: grid;
-  gap: 24px;
+  gap: var(--default-spacing);
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 }
 
 .link {
-  display: grid;
-  justify-content: center;
-  padding: 6px 0 12px;
+  display: block;
+  padding: calc(var(--default-spacing) / 3) 0 calc(var(--default-spacing) / 2);
+  text-align: center;
   background: #1b2a35;
   box-shadow: 0 0 9px rgba(0, 0, 0, 0.2);
 }
 
 .link img {
+  margin: 0 auto;
   transition: transform 0.25s ease;
 }
 
