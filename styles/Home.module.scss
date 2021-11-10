@@ -8,30 +8,31 @@
 }
 
 .heading {
-  margin-bottom: var(--default-spacing);
+  margin: calc(var(--default-spacing) * 2) 0;
 }
 
 .pokemonNav {
   display: grid;
   gap: var(--default-spacing);
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  margin-bottom: calc(var(--default-spacing) * 2);
 }
 
 .link {
   display: block;
-  padding: calc(var(--default-spacing) / 3) 0 calc(var(--default-spacing) / 2);
+  padding: calc(var(--default-spacing) / 3) 0 calc(var(--default-spacing));
   text-align: center;
   background: #1b2a35;
   box-shadow: 0 0 9px rgba(0, 0, 0, 0.2);
-}
+  img {
+    margin: 0 auto;
+    height: 110px;
+    transition: transform 0.25s ease;
+  }
 
-.link img {
-  margin: 0 auto;
-  transition: transform 0.25s ease;
-}
-
-.link:hover img {
-  transform: scale(1.06);
+  &:hover img {
+    transform: scale(1.06);
+  }
 }
 
 .button {

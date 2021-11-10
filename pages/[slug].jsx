@@ -3,6 +3,8 @@ import { query } from '../client';
 import { POKEMON, POKEMONS } from '../queries';
 import pokemonStype from '../styles/PokemonStype.module.scss';
 import PokemonImage from '../components/PokemonImage';
+import { POKEMON_LIMIT } from '../constants';
+
 const PokemonView = ({ pokemon }) => {
   const { sprites, name, id, weight, height, stats, types } = pokemon;
 
@@ -58,12 +60,14 @@ export const getStaticPaths = async () => {
   const {
     pokemons: { count },
   } = await query(POKEMONS, { limit: 1 });
-  const promises = [...new Array(Math.ceil(count / 151))].map((_, i) => {
-    return query(POKEMONS, {
-      limit: 151,
-      offset: i * 151,
-    });
-  });
+  const promises = [...new Array(Math.ceil(count / POKEMON_LIMIT))].map(
+    (_, i) => {
+      return query(POKEMONS, {
+        limit: POKEMON_LIMIT,
+        offset: i * POKEMON_LIMIT,
+      });
+    }
+  );
 
   const allPromises = await Promise.all(promises);
 
