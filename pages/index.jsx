@@ -5,13 +5,13 @@ import styles from '../styles/Home.module.scss';
 import { POKEMON_LIMIT } from '../constants';
 import { Fragment } from 'react';
 
-export default function Index({ pokemons, pagination }) {
-  console.log(pagination);
+import Pagination from '../components/Pagination';
+
+export default function Index({ pokemons, totalAmountOfPages }) {
   return (
     <div className={styles.container}>
       <main>
         <h1 className={styles.heading}>Select your favorite</h1>
-
         {pokemons.length > 0 ? (
           <Fragment>
             <ul className={styles.pokemonNav}>
@@ -29,24 +29,14 @@ export default function Index({ pokemons, pagination }) {
                 </li>
               ))}
             </ul>
-            {pagination && (
-              <div>
-                {[...new Array(pagination.totalAmountOfPages)].map((_, i) => (
-                  <Link key={i} href="/page/[page]" as={`/page/${i + 1}`}>
-                    <a className={styles.link}>{i + 1}</a>
-                  </Link>
-                ))}
-              </div>
+
+            {totalAmountOfPages && (
+              <Pagination totalAmountOfPages={totalAmountOfPages} />
             )}
           </Fragment>
         ) : (
           <p>Looks like all pokemons left</p>
         )}
-        {/* {pokemons.length <= POKEMON_LIMIT && ( */}
-        {/* <button className={styles.button} onClick={onClick}>
-          Show more Pokemons
-        </button> */}
-        {/* )} */}
       </main>
     </div>
   );
@@ -60,10 +50,7 @@ export const getStaticProps = async () => {
   return {
     props: {
       pokemons: results,
-      pagination: {
-        currentPage: 1,
-        totalAmountOfPages: Math.ceil(count / POKEMON_LIMIT),
-      },
+      totalAmountOfPages: Math.ceil(count / POKEMON_LIMIT),
     },
   };
 };

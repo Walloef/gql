@@ -22,7 +22,7 @@
   display: block;
   padding: calc(var(--default-spacing) / 3) 0 calc(var(--default-spacing));
   text-align: center;
-  background: #1b2a35;
+  background: var(--color-light);
   box-shadow: 0 0 9px rgba(0, 0, 0, 0.2);
   img {
     margin: 0 auto;
@@ -33,16 +33,4 @@
   &:hover img {
     transform: scale(1.06);
   }
-}
-
-.button {
-  display: block;
-  margin: 24px auto;
-  border: none;
-  padding: 6px 12px;
-  background: #d45d5d;
-  color: black;
-  font-weight: bold;
-  font-size: var(--default-font-size);
-  cursor: pointer;
 }

@@ -11,17 +11,10 @@ export const getStaticProps = async ({ params }) => {
     offset: POKEMON_LIMIT * (params.page - 1),
   });
 
-  console.log(count);
-  console.log(params.page);
-  console.log(Math.ceil(count / POKEMON_LIMIT));
-
   return {
     props: {
       pokemons: results,
-      pagination: {
-        currentPage: params.page,
-        totalAmountOfPages: Math.ceil(count / POKEMON_LIMIT),
-      },
+      totalAmountOfPages: Math.ceil(count / POKEMON_LIMIT),
     },
   };
 };
